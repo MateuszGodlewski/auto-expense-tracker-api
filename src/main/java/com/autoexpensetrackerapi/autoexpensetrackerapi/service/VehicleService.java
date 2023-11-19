@@ -1,18 +1,17 @@
 package com.autoexpensetrackerapi.autoexpensetrackerapi.service;
 
 import com.autoexpensetrackerapi.autoexpensetrackerapi.model.Vehicle;
-import com.autoexpensetrackerapi.autoexpensetrackerapi.repository.VehicleRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.dao.DataAccessException;
 
-@Service
-public class VehicleService {
-    private final VehicleRepository vehicleRepository;
+import java.util.Optional;
 
-    public VehicleService(VehicleRepository vehicleRepository) {
-        this.vehicleRepository = vehicleRepository;
-    }
+public interface VehicleService {
+    Optional<Vehicle> findById(Long id) throws DataAccessException;
 
-    public Iterable<Vehicle> getAll() {
-        return vehicleRepository.findAll();
-    }
+    Iterable<Vehicle> findAll() throws DataAccessException;
+
+    void save(Vehicle vehicle) throws DataAccessException;
+
+    void delete(Vehicle vehicle) throws DataAccessException;
 }
+
